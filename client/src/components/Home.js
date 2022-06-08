@@ -1,4 +1,8 @@
 import React from "react";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteIcon from '@mui/icons-material/Delete';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+
 
 const Home = () => {
     return(
@@ -28,9 +32,9 @@ const Home = () => {
                         <td>SDE</td>
                         <td>3547698789</td>
                         <td className="d-flex justify-content-between">
-                            <button className="btn btn-success"><i class="fa-solid fa-eye"></i></button>
-                            <button className="btn btn-primary"><i class="fa-solid fa-pen"></i></button>
-                            <button className="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            <button className="btn btn-success"><VisibilityIcon/></button>
+                            <button className="btn btn-primary"><BorderColorIcon/></button>
+                            <button className="btn btn-danger"><DeleteIcon/></button>
                         </td>
                         </tr>
                     </tbody>
