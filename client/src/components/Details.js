@@ -7,7 +7,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import WorkIcon from '@mui/icons-material/Work';
 import CallIcon from '@mui/icons-material/Call';
 import HomeIcon from '@mui/icons-material/Home';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { useEffect,useState } from 'react';
 
 const Details = () => {
@@ -40,7 +40,7 @@ const Details = () => {
 
   return (
     <div className='container mt-3'>
-        <h1>Welcome, Mark!</h1>
+        <h1>Welcome, {user.userName}!</h1>
         <Card sx={{ maxWidth: 600 }}>
             <CardContent>
                 <div classname="row">
@@ -55,8 +55,7 @@ const Details = () => {
                         <p><CallIcon/><span style={{fontWeight:400}}>{user.userContact}</span></p>
                         <p><HomeIcon/><span style={{fontWeight:400}}>{user.userAddress}</span></p>
                         <p>Description: <span style={{fontWeight:400}}>{user.description}</span></p>
-                        <button className="btn btn-primary mx-2"><BorderColorIcon/></button>
-                        <button className="btn btn-danger"><DeleteIcon/></button>
+            
                     </div>
                 </div>
             </CardContent>
