@@ -46,7 +46,7 @@ const Details = () => {
                 <div classname="row">
                     <div className="left-view col-lg-6 col-md-6 col-12">
                         <img src="/profile.png" style={{width:50}} alt="profile"/>
-                        <h3 className='mt-3'><span style={{fontWeight:400}}>{user.userName}</span><span>(21)</span></h3>
+                        <h3 className='mt-3'><span style={{fontWeight:400}}>{user.userName}</span><span>({user.userAge})</span></h3>
                         <p><MailIcon/><span style={{fontWeight:400}}>{user.userEmail}</span></p>
                         <p><WorkIcon/><span style={{fontWeight:400}}>{user.userWork}</span></p>
                     </div>

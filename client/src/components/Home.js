@@ -28,6 +28,25 @@ const Home = () => {
         }
     }
 
+    const deleteUser = async (id) => {
+        const res2 = await fetch(`/delete/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const deletedata = await res2.json();
+        console.log(deletedata);
+
+        if(res2.status === 400 || !deletedata){
+            alert("Could not delete data.")
+        }
+        else{
+            alert("User deleted.")
+            getData();
+        }
+    }
+
     useEffect(() => {
         getData();
     },[]);
@@ -63,8 +82,8 @@ const Home = () => {
                                         <td>{user.userContact}</td>
                                         <td className="d-flex justify-content-between">
                                             <NavLink to={`view/${user._id}`}><button className="btn btn-success"><VisibilityIcon/></button></NavLink>
-                                            <button className="btn btn-primary"><BorderColorIcon/></button>
-                                            <button className="btn btn-danger"><DeleteIcon/></button>
+                                            <NavLink to={`edit/${user._id}`}><button className="btn btn-primary"><BorderColorIcon/></button></NavLink>
+                                            <button className="btn btn-danger" onClick={() => deleteUser(user._id)}><DeleteIcon/></button>
                                         </td>
                                     </tr>
                                 )

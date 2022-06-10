@@ -1,7 +1,10 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Edit = () => {
+
+    const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
         userName: '',
@@ -12,6 +15,7 @@ const Edit = () => {
         userAddress: '',
         description: '',
     })
+
     const setData = (e) => {
         console.log(e.target.value);
         const {name, value} = e.target;
@@ -22,6 +26,52 @@ const Edit = () => {
             }
         })
     }
+
+    
+    const {id} = useParams("");
+
+    const getData = async () => {
+        const res = await fetch(`/getuser/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const data = await res.json();
+        console.log(data);
+        if(res.status === 400 || !data){
+            alert("Could not fetch data.")
+        }
+        else{
+            setInputs(data);
+            console.log("get data")
+        }
+    }
+
+    const updateUser = async (e) => {
+        e.preventDefault();
+        const res2 = await fetch(`/update/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(inputs)
+        });
+
+        const data2 = await res2.json();
+        console.log(data2);
+
+        if(res2.status === 400 || !data2){
+            alert("Could not update data.")
+        }else{
+            alert("Data updated successfully.")
+            navigate("/");
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    },[]);
 
 
   return (
@@ -55,7 +105,7 @@ const Edit = () => {
                 <label for="description" class="form-label">Description</label>
                 <textarea name="description" value={inputs.description} onChange={setData} className='form-control' rows="5" id="description"/>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" onClick={updateUser} class="btn btn-primary">Submit</button>
             </form>
     </div>
   )

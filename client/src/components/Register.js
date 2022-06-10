@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const [inputs, setInputs] = React.useState({
         userName: '',
@@ -41,6 +44,7 @@ const Register = () => {
         }
         else{
             alert("User added.")
+            navigate("/");
         }
     }
 

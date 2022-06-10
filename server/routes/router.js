@@ -63,4 +63,31 @@ router.post("/register", async (req, res) => {
     }
 });
 
+
+router.patch("/update/:id", async (req, res) => {
+    try{
+        const { id } = req.params;
+        const updatedUser = await users.findByIdAndUpdate(id, req.body, {new: true});
+        console.log(updatedUser);
+        res.status(201).json(updatedUser);
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
+})
+
+//delete data
+router.delete("/delete/:id", async (req, res) => {
+    try{
+        const { id } = req.params;
+        const deleteUser = await users.findByIdAndDelete({_id:id});
+        console.log(deleteUser);
+        res.status(201).json(deleteUser);
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
+})
+
+
 module.exports = router;
