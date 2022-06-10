@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 
 const Home = () => {
+
+    const [users, setUsers] = React.useState([]);
+    console.log(users);
+
+    const getData = async (e) => {
+        const res = await fetch("/view", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        });
+        const data = await res.json();
+        console.log(data);
+        if(res.status === 400 || !data){
+            alert("Could not fetch data.")
+        }
+        else{
+            setUsers(data);
+            console.log("get data")
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    },[]);
+
     return(
         <div className="mt-5">
             <h1>Home</h1>
             <div className="container">
                 <div className="add_btn mt-2 mb-2">
-                    <button className="btn btn-primary">Add Data</button>
+                    <NavLink to="/register" className="btn btn-primary">Add Data</NavLink>
                 </div>
 
                 <table class="table">
@@ -25,18 +52,25 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>mark@gmail.com</td>
-                        <td>SDE</td>
-                        <td>3547698789</td>
-                        <td className="d-flex justify-content-between">
-                            <button className="btn btn-success"><VisibilityIcon/></button>
-                            <button className="btn btn-primary"><BorderColorIcon/></button>
-                            <button className="btn btn-danger"><DeleteIcon/></button>
-                        </td>
-                        </tr>
+                        {
+                            users.map((user, index) => {
+                                return(
+                                    <tr>
+                                        <th scope="row">{index+1}</th>
+                                        <td>{user.userName}</td>
+                                        <td>{user.userEmail}</td>
+                                        <td>{user.userWork}</td>
+                                        <td>{user.userContact}</td>
+                                        <td className="d-flex justify-content-between">
+                                            <button className="btn btn-success"><VisibilityIcon/></button>
+                                            <button className="btn btn-primary"><BorderColorIcon/></button>
+                                            <button className="btn btn-danger"><DeleteIcon/></button>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                        
                     </tbody>
                 </table>
             </div>

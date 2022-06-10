@@ -7,13 +7,25 @@ router.get("/", (req, res) => {
     console.log("GET request received");
 });
 
+
+router.get("/view", async (req, res) => {
+    try{
+        const userData = await users.find();
+        res.status(201).json(userData);
+        console.log(userData);
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
+});
+
 router.post("/register", async (req, res) => {
     console.log("POST request received");
     console.log(req.body);
     const { userName,userEmail,userAge,userContact,userWork,userAddress,description} = req.body; 
 
     if( !userName || !userEmail || !userAge || !userContact || !userWork || !userAddress || !description){
-        res.status(400).send("Please fill all the fields");
+        res.status(400).json("Please fill all the fields");
     }
 
     try{
@@ -32,7 +44,7 @@ router.post("/register", async (req, res) => {
         }
     }
     catch(err){
-        res.status(400).send(err);
+        res.status(400).json(err);
     }
 });
 

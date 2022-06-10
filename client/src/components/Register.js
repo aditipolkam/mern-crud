@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 
 const Register = () => {
 
@@ -13,7 +12,7 @@ const Register = () => {
         description: '',
     })
     const setData = (e) => {
-        console.log(e.target.value);
+       // console.log(e.target.value);
         const {name, value} = e.target;
         setInputs((prev) => {
             return {
@@ -21,6 +20,28 @@ const Register = () => {
                 [name]: value
             }
         })
+    }
+
+    const addData = async (e) => {
+        e.preventDefault();
+        const {userName,userEmail,userAge,userContact,userWork,userAddress,description} = inputs;
+        const res = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                userName,userEmail,userAge,userContact,userWork,userAddress,description
+            })
+        });
+        const data = await res.json();
+        console.log(data);
+        if(res.status === 400 || !data){
+            alert("User not added.")
+        }
+        else{
+            alert("User added.")
+        }
     }
 
   return (
@@ -54,7 +75,7 @@ const Register = () => {
                 <label for="description" class="form-label">Description</label>
                 <textarea name="description" value={inputs.description} onChange={setData} className='form-control' rows="5" id="description"/>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" onClick={addData}>Submit</button>
             </form>
     </div>
   )
