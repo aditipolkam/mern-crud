@@ -62,7 +62,7 @@ const Home = () => {
                                         <td>{user.userWork}</td>
                                         <td>{user.userContact}</td>
                                         <td className="d-flex justify-content-between">
-                                            <button className="btn btn-success"><VisibilityIcon/></button>
+                                            <NavLink to={`view/${user._id}`}><button className="btn btn-success"><VisibilityIcon/></button></NavLink>
                                             <button className="btn btn-primary"><BorderColorIcon/></button>
                                             <button className="btn btn-danger"><DeleteIcon/></button>
                                         </td>

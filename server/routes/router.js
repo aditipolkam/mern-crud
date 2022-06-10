@@ -19,6 +19,21 @@ router.get("/view", async (req, res) => {
     }
 });
 
+//get individual data
+router.get("/getuser/:id", async (req, res) => {
+    try{
+        //console.log(req.params);
+        //res.send(req.params);
+        const { id } = req.params;
+        const userData = await users.findById({_id:id});
+        console.log(userData);
+        res.status(201).json(userData);
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
+})
+
 router.post("/register", async (req, res) => {
     console.log("POST request received");
     console.log(req.body);
