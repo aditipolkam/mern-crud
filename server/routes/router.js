@@ -5,6 +5,7 @@ const users = require('../models/userSchema');
 
 router.get("/", (req, res) => {
     console.log("GET request received");
+    res.send("GET request received");
 });
 
 
