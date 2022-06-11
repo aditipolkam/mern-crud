@@ -4,7 +4,6 @@ const users = require('../models/userSchema');
 
 
 router.get("/", (req, res) => {
-    console.log("GET request received");
     res.send("GET request received");
 });
 
@@ -14,7 +13,6 @@ router.get("/view", async (req, res) => {
         const userData = await users.find();
         res.status(201).json(userData);
         console.log(userData);
-        res.send("GET request received");
     }
     catch(err){
         res.status(400).json(err);
@@ -28,7 +26,6 @@ router.get("/getuser/:id", async (req, res) => {
         //res.send(req.params);
         const { id } = req.params;
         const userData = await users.findById({_id:id});
-        res.send(userData);
         res.status(201).json(userData);
     }
     catch(err){
