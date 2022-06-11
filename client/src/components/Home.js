@@ -11,7 +11,7 @@ const Home = () => {
     console.log(users);
 
     const getData = async (e) => {
-        const res = await fetch("https://user-details-mern.herokuapp.com/view", {
+        const res = await fetch(`https://user-details-mern.herokuapp.com/view`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -81,8 +81,8 @@ const Home = () => {
                                         <td>{user.userWork}</td>
                                         <td>{user.userContact}</td>
                                         <td className="d-flex justify-content-between">
-                                            <NavLink to={`https://user-details-mern.herokuapp.com/view/${user._id}`}><button className="btn btn-success"><VisibilityIcon/></button></NavLink>
-                                            <NavLink to={`https://user-details-mern.herokuapp.com/edit/${user._id}`}><button className="btn btn-primary"><BorderColorIcon/></button></NavLink>
+                                            <NavLink to={`/view/${user._id}`}><button className="btn btn-success"><VisibilityIcon/></button></NavLink>
+                                            <NavLink to={`/edit/${user._id}`}><button className="btn btn-primary"><BorderColorIcon/></button></NavLink>
                                             <button className="btn btn-danger" onClick={() => deleteUser(user._id)}><DeleteIcon/></button>
                                         </td>
                                     </tr>
