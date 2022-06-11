@@ -17,7 +17,7 @@ const Details = () => {
     const {id} = useParams("");
 
     const getData = async () => {
-        const res = await fetch(`/getuser/${id}`, {
+        const res = await fetch(`https://user-details-mern.herokuapp.com/getuser/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

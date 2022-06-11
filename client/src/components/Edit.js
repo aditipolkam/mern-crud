@@ -31,7 +31,7 @@ const Edit = () => {
     const {id} = useParams("");
 
     const getData = async () => {
-        const res = await fetch(`/getuser/${id}`, {
+        const res = await fetch(`https://user-details-mern.herokuapp.com/getuser/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -50,7 +50,7 @@ const Edit = () => {
 
     const updateUser = async (e) => {
         e.preventDefault();
-        const res2 = await fetch(`/update/${id}`, {
+        const res2 = await fetch(`https://user-details-mern.herokuapp.com/update/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"

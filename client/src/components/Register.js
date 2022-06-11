@@ -28,7 +28,7 @@ const Register = () => {
     const addData = async (e) => {
         e.preventDefault();
         const {userName,userEmail,userAge,userContact,userWork,userAddress,description} = inputs;
-        const res = await fetch("/register", {
+        const res = await fetch("https://user-details-mern.herokuapp.com/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
