@@ -1,7 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const dbPwd = process.env.DB_PWD;
-const dbURL = `mongodb+srv://root:${dbPwd}@cluster0.hispt.mongodb.net/mernstack?retryWrites=true&w=majority`;
+const dbURL = `mongodb+srv://root:root@cluster0.hispt.mongodb.net/mernstack?retryWrites=true&w=majority`;
 
 
 mongoose.connect(dbURL, {
